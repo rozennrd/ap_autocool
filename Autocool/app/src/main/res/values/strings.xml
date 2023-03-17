@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Autocool</string>
+    <string name="login">Login</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="connexion">Connexion</string>
+    <string name="logo_autocool">Logo autocool</string>
+    <string name="les_tarifs">les tarifs</string>
+    <string name="les_adh_rents">les adhérents</string>
+    <string name="les_v_hicules">Les Véhicules</string>
+</resources>
