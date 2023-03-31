@@ -8,4 +8,8 @@
     <string name="les_tarifs">les tarifs</string>
     <string name="les_adh_rents">les adhérents</string>
     <string name="les_v_hicules">Les Véhicules</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="l">L</string>
+    <string name="cat_gorie">Catégorie</string>
 </resources>

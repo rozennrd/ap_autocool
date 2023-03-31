@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 //Appel de la fonction authentification
                 try {
                     authentification();
-                }catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.56.1/servWebEtudiant/auhentification.php")
+                .url("http://192.168.56.1/Autocool-php/controleurAndroid/auth.php")
                 .post(formBody)
                 .build();
 
@@ -72,12 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (responseStr.compareTo("false") != 0) {
                     try {
-                        JSONObject etudiant = new JSONObject(responseStr);
-                        if (etudiant.getString("statut").compareTo("prof") != 0) {
-                            Intent intent = new Intent(MainActivity.this, choixPartie.class);
-                            intent.putExtra("etudiant", etudiant.toString());
-                            startActivity(intent);
-                        }
+                        JSONObject employe = new JSONObject(responseStr);
+                        Intent intent = new Intent(MainActivity.this, choixPartie.class);
+                        intent.putExtra("employe", employe.toString());
+                        startActivity(intent);
                     } catch (JSONException e) {
                         Log.d("Test", e.getMessage());
                         // Toast.makeText(MainActivity.this, "Erreur de connexion !!!! !", Toast.LENGTH_SHORT).show();

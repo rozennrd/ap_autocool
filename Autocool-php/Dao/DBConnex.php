@@ -1,5 +1,5 @@
 <?php
-
+require_once("../Dao/Param.php");
 class DBConnex extends PDO{
 private static $instance;
 	public static function getInstance(){

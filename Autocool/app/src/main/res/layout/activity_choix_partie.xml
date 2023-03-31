@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnVehicules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
@@ -31,7 +31,7 @@
         />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAdherents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -39,17 +39,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/btnVehicules"
         android:width="300dp"/>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnTarifs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/les_tarifs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdherents"
         android:layout_marginTop="40dp"
         android:width="300dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

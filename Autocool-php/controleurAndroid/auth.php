@@ -1,11 +1,11 @@
 <?php
 /**
 * Authentification habilité : 
-*   login : SavillePatenaude@teleworm.us 
-*   mdp : aeYiey0oh
+*   login : savillepatenaude@teleworm.us 
+*   mdp : test
 */
 
-require_once '../Param.php';
+require_once '../Dao/Param.php';
 require_once '../Dao/DBConnex.php';
 require_once '../Dao/EmployeDAO.php';
 
