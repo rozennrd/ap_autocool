@@ -40,8 +40,6 @@ public class choixCategVoiture extends AppCompatActivity {
         setContentView(R.layout.activity_choix_categ_voiture);
 
 
-
-
         Request request = new Request.Builder()
                 .url("http://192.168.56.1/Autocool-php/controleurAndroid/listecategories.php")
                 .get()
@@ -114,16 +112,11 @@ public class choixCategVoiture extends AppCompatActivity {
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
             // Create a new view, which defines the UI of the list item
             View view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.text_row_item, viewGroup, false);
+                    .inflate(R.layout., viewGroup, false);
 
             return new ViewHolder(view);
         }
 
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return null;
-        }
 
         // Replace the contents of a view (invoked by the layout manager)
         @Override

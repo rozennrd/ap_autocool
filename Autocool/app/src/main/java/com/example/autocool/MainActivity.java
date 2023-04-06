@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.56.1/Autocool-php/controleurAndroid/auth.php")
+                .url("http://127.0.0.1/Autocool-php/controleurAndroid/auth.php")
                 .post(formBody)
                 .build();
 
