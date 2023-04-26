@@ -2,20 +2,26 @@ package com.example.autocool;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,105 +39,86 @@ public class choixCategVoiture extends AppCompatActivity {
     String responseStr ;
     OkHttpClient client = new OkHttpClient();
     private String[] localDataSet;
-
+    private Context ctx;
+    private ListView lvBtnCateg;
+    private JSONArray lesCategVehicule;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choix_categ_voiture);
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
+                .detectLeakedClosableObjects()
+                .build());
 
+        setContentView(R.layout.activity_choix_categ_voiture);
+        lvBtnCateg = findViewById(R.id.lvBtnCateg);
+        ctx = this;
+
+        // Ajout voiture
+        Button btnAjoutVoiture  = findViewById(R.id.btnAjoutVoiture);
+        btnAjoutVoiture.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(choixCategVoiture.this, AjouterVoiture.class);
+                startActivity(intent);
+            }
+        });
 
         Request request = new Request.Builder()
-                .url("http://192.168.56.1/Autocool-php/controleurAndroid/listecategories.php")
+                .url(Constantes.getAPI("listecategories.php"))
                 .get()
                 .build();
 
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
 
-            public void onResponse(Call call, Response response) throws IOException {
+        public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
-                responseStr = response.body().string();
+            responseStr = Objects.requireNonNull(response.body()).string();
+            Log.d("Test", responseStr);
+            if (responseStr.compareTo("false") != 0) {
+                try {
+                    JSONArray lesCategVehicule = new JSONArray(responseStr);
+                    Log.d("Test", lesCategVehicule.toString());
+                    JSONAdapter adapter= new JSONAdapter(choixCategVoiture.this, lesCategVehicule);
 
-                if (responseStr.compareTo("false") != 0) {
-                    try {
-                        // récupérer le
+                    lvBtnCateg.setAdapter(adapter);
+                    lvBtnCateg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                    } catch (JSONException e) {
-                        Log.d("Test", e.getMessage());
-                        // Toast.makeText(MainActivity.this, "Erreur de connexion !!!! !", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Log.d("Test", "Login ou mot de  passe non valide !");
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            try {
+                                JSONObject object = adapter.getItem(position);
+                                Log.d("Test", object.toString());
+                                Intent intent = new Intent(choixCategVoiture.this, listeVoitures.class);
+                                Log.d("Test", "code catégorie : " + object.getString("CODECATEG"));
+                                intent.putExtra("CODECATEG", object.getString("CODECATEG"));
+                                startActivity(intent);
+                            } catch (JSONException e) {
+                                Log.d("Test", e.getMessage());
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    Log.d("Test", e.getMessage());
+                    Toast.makeText(choixCategVoiture.this, "Erreur de connexion !!!! !", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.d("Test", "erreur!!! connexion impossible");
-                Log.d("Test", e.getMessage());
-                e.printStackTrace();
+            } else {
+                Log.d("Test", "Login ou mot de  passe non valide !");
             }
+        }
+
+        public void onFailure(@NonNull Call call, @NonNull IOException e) {
+            Log.d("Test", "erreur!!! connexion impossible");
+            Log.d("Test", e.getMessage());
+            e.printStackTrace();
+        }
 
         });
     }
 
-    public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
-
-        private String[] localDataSet;
-
-        /**
-         * Provide a reference to the type of views that you are using
-         * (custom ViewHolder)
-         */
-        public static class ViewHolder extends RecyclerView.ViewHolder {
-            private final TextView textView;
-
-            public ViewHolder(View view) {
-                super(view);
-                // Define click listener for the ViewHolder's View
-
-                textView = (TextView) view.findViewById(R.id.textView);
-            }
-
-            public TextView getTextView() {
-                return textView;
-            }
-        }
-
-        /**
-         * Initialize the dataset of the Adapter
-         *
-         * @param dataSet String[] containing the data to populate views to be used
-         * by RecyclerView
-         */
-        public CustomAdapter(String[] dataSet) {
-            localDataSet = dataSet;
-        }
-
-        // Create new views (invoked by the layout manager)
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-            // Create a new view, which defines the UI of the list item
-            View view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout., viewGroup, false);
-
-            return new ViewHolder(view);
-        }
-
-
-        // Replace the contents of a view (invoked by the layout manager)
-        @Override
-        public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-
-            // Get element from your dataset at this position and replace the
-            // contents of the view with that element
-            viewHolder.getTextView().setText(localDataSet[position]);
-        }
-
-        // Return the size of your dataset (invoked by the layout manager)
-        @Override
-        public int getItemCount() {
-            return localDataSet.length;
-        }
-    }
 
 }

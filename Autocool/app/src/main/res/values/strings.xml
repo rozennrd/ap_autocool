@@ -12,4 +12,16 @@
     <string name="m">M</string>
     <string name="l">L</string>
     <string name="cat_gorie">Catégorie</string>
+    <string name="messagebutton">messageButton</string>
+    <string name="nomvoiture">nomVoiture</string>
+    <string name="type">Type</string>
+    <string name="kilom_trage">Kilométrage</string>
+    <string name="niveau_d_essence">Niveau d\'essence</string>
+    <string name="ajouter_une_voiture">Ajouter une voiture</string>
+    <string name="ajouter_unevoiture">Ajouter une voiture</string>
+    <string name="choisir_une_cat_gorie">Choisir une catégorie</string>
+    <string name="ajouterunevoiture">Ajouter une voiture</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="type_de_v_hicule">Type de véhicule</string>
+    <string name="station">Station</string>
 </resources>

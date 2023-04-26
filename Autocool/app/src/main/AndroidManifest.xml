@@ -17,6 +17,13 @@
         android:theme="@style/Theme.Autocool"
         tools:targetApi="31">
         <activity
+            android:name=".AjouterVoiture"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".detailVoiture"
             android:exported="false">
             <meta-data

@@ -8,21 +8,37 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="300dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="76dp"
-        android:text="@string/cat_gorie"
-        android:textSize="40dp"
+        android:layout_width="290dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="128dp"
+        android:text="@string/choisir_une_cat_gorie"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
+
+
+    <Button
+        android:id="@+id/btnAjoutVoiture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/ajouter_unevoiture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#75b70f"/>
+
+    <ListView
+        android:id="@+id/lvBtnCateg"
         android:layout_width="409dp"
-        android:layout_height="587dp"
+        android:layout_height="540dp"
         android:layout_marginTop="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
