@@ -112,7 +112,7 @@ public class AjouterVoiture extends AppCompatActivity {
                     try {
 
                         JSONArray jsonObject = new JSONArray(responseStr);
-
+                        Log.d("Test", responseStr);
                         ArrayList<String> listeStations = new ArrayList<>();
                         for(int i=0;i<jsonObject.length();i++){
                             JSONObject jsonObject1=jsonObject.getJSONObject(i);
